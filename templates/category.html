@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Main -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row gtr-200">
+            <div class="col-4 col-12-medium">
+                <div id="sidebar">
+
+                    <!-- Sidebar -->
+                    <section>
+                        {% for category in categories %}
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'category' category.slug %}">{{ category.name }}</a>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        <br>
+                        <h3>Subheading</h3>
+                        <p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
+                            Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.
+                            Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi
+                            consequat etiam.</p>
+                        <footer>
+                            <a href="#" class="button icon solid fa-info-circle">Find out more</a>
+                        </footer>
+                    </section>
+
+                    <section>
+                        <h3>Subheading</h3>
+                        <ul class="style2">
+                            <li><a href="#">Amet turpis, feugiat et sit amet</a></li>
+                            <li><a href="#">Ornare in hendrerit in lectus</a></li>
+                            <li><a href="#">Semper mod quis eget mi dolore</a></li>
+                            <li><a href="#">Quam turpis feugiat sit dolor</a></li>
+                            <li><a href="#">Amet ornare in hendrerit in lectus</a></li>
+                            <li><a href="#">Semper mod quisturpis nisi</a></li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+            <div class="col-8 col-12-medium imp-medium">
+                <div id="content">
+
+                    <!-- Content -->
+                    {% for book in books %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ book.image.url }}" class="img-fluid rounded-start"
+                                     style="width: 300px; height: 270px;" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title"><a href="#">{{ book.title }}</a></h3>
+                                    <h5 class="card-title"><a href="#">{{ book.author }}</a></h5>
+                                    <p class="card-text">{{ book.desc|truncatewords:10 }}</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

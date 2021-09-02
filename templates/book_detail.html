@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Main -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row gtr-200">
+            <div class="col-4 col-12-medium">
+                <div id="sidebar">
+
+                    <!-- Sidebar -->
+                    <section>
+                        <img src="{{ book.image.url }}" class="rounded mx-auto d-block" alt="..."
+                             style="width: 250px; height: 350px;">
+                        <br>
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" style="width: 220px; height: 50px; margin-left: 37px">
+                                Добавить
+                            </button>
+                            <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a><li>Хочу прочитать</li></a>
+                                <br>
+                                <a><li>Прочитал</li></a>
+                                <br>
+                                <a><li>Читаю сейчас</li></a>
+                                <br>
+                                <a><li>Не дочитал</li></a>
+                            </ul>
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+                        <div style="width: 280px; margin-left: 37px">
+                        <h5>Информация о книге:</h5>
+                        <p>{{ book.info }}</p>
+                            <br>
+                            <h5>Жанры:</h5>
+                            {% if book.get_genre %}
+                            <p>
+                            {% for genre in book.get_genre %}
+                                <a href="{% url 'genre_detail' genre.slug %}">{{ genre.name }} /</a>
+                            {% endfor %}
+                            </p>
+                            {% endif %}
+                            {% if book.cycle %}
+                            <h5>Серия:</h5><a><p>{{ book.cycle }}</p></a>
+                            {% endif %}
+                            {% if book.puplisher %}
+                            <h5>Издательство:</h5><a><p>{{ book.puplisher }}</p></a>
+                            {% endif %}
+                            <a href="{% url 'update-book' book.pk %}"><i class="fas fa-edit fa-2x"></i></a>
+                            <a href="{% url 'delete-book' book.pk %}"><i class="fas fa-trash-alt fa-2x"></i></a>
+                        </div>
+                    </section>
+
+
+                </div>
+            </div>
+            <div class="col-8 col-12-medium imp-medium">
+                <div id="content">
+
+                    <!-- Content -->
+
+                    <article>
+                        <a style="margin-left: 700px"><i class="far fa-bookmark fa-2x"></i></a>
+                        <h1>{{ book.title }}</h1>
+                        <h5 style="margin-left: 5px"><a>{{ book.author }}</a></h5>
+                        <br>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck1">Рецензии</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck2">Цитаты</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck3">Аудиокнига</label>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p>{{ book.desc }}</p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

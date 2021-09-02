@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Main -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row gtr-200">
+            <div class="col-8 col-12-medium">
+                <div id="content">
+
+                    <!-- Content -->
+
+
+                </div>
+            </div>
+            <div class="col-4 col-12-medium">
+                <div id="sidebar">
+
+                    <!-- Sidebar -->
+                    {% for genre in genres %}
+                    <div class="row row-cols-1 row-cols-md-3 g-4" style="">
+                        <div class="col">
+                            <div class="card h-100">
+                                {% if genre.image %}
+                                <img src="{{ genre.image.url }}" class="card-img-top" alt="...">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ genre.name }}</h5>
+                                    <ul class="list-group list-group-flush">
+                                        {% if genre.get_children %}
+                                        {% for children in genre.get_children %}
+                                        <li class="list-group-item">{{ children.name }}</li>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

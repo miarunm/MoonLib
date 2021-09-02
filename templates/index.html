@@ -1,65 +1,907 @@
-<!DOCTYPE HTML>
-{% load static %}
-<html>
-	<head>
-		<title>MoonLib</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-	</head>
-	<body class="is-preload homepage">
-		<div id="page-wrapper">
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="https://s.livelib.ru/skins/ll2019/css/style.20210819.css"/>
 
-			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+    </svg>
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+    {{ message }}
+  </div>
+</div>
+    {% endfor %}
+</ul>
+{% endif %}
+<!-- main slider -->
 
-						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="">MoonLib</a></h1>
-								<span>by Nuraiym</span>
-							</div>
+<article class="main-slider" onclick="sa_send_click('object', 47, 'click');">
+    <div class="main-slider__list">
+        <div class="main-slider__item slides-kv" data-object_id="160">
+            <div class="main-slider__kv">
+                <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M44.2105 28.8947C44.2105 34.6184 39.5131 39.3158 33.7895 39.3158C28.0658 39.3158 23.3684 34.6184 23.3684 28.8947C23.3684 23.1711 28.0658 18.4737 33.7895 18.4737C39.5131 18.4737 44.2105 23.1711 44.2105 28.8947ZM9.47368 72.3158C9.47368 65.9953 12.9194 61.3204 17.8878 58.0718C22.9364 54.7708 29.2162 53.2105 33.7895 53.2105C38.3628 53.2105 44.6425 54.7708 49.6911 58.0718C54.6595 61.3204 58.1053 65.9953 58.1053 72.3158V74.0526C58.1053 75.93 56.4754 77.5263 54.6316 77.5263H12.9474C11.0757 77.5263 9.47368 75.9291 9.47368 74.0526V72.3158ZM33.7895 42.7895C41.4316 42.7895 47.6842 36.5368 47.6842 28.8947C47.6842 21.2526 41.4316 15 33.7895 15C26.1474 15 19.8947 21.2526 19.8947 28.8947C19.8947 36.5368 26.1474 42.7895 33.7895 42.7895ZM33.7895 49.7368C23.3684 49.7368 6 56.6842 6 72.3158V74.0526C6 77.852 9.1616 81 12.9474 81H54.6316C58.3631 81 61.5789 77.8791 61.5789 74.0526V72.3158C61.5789 56.6842 44.2105 49.7368 33.7895 49.7368ZM68.5266 42.4239C72.3979 42.4239 75.4739 39.3142 75.4739 35.6593C75.4739 32.0045 72.3979 28.8948 68.5266 28.8948C64.6552 28.8948 61.5792 32.0045 61.5792 35.6593C61.5792 39.3142 64.6552 42.4239 68.5266 42.4239ZM57.052 57.9386C56.6676 58.1855 56.2976 58.4429 55.9433 58.7109C55.1226 57.8701 54.2359 57.0912 53.2994 56.373C57.7751 52.7202 64.0178 51.0167 68.5266 51.0167C76.3423 51.0167 89.3687 56.1358 89.3687 67.6538V68.9336C89.3687 71.7531 86.9568 74.0527 84.1581 74.0527H61.5793V74.0526V72.3157C61.5793 71.7244 61.5545 71.1455 61.5061 70.579H84.1581C85.1276 70.579 85.895 69.7465 85.895 68.9336V67.6538C85.895 63.4193 83.5667 60.229 80.0011 57.9386C76.3613 55.6005 71.81 54.4904 68.5266 54.4904C65.2431 54.4904 60.6918 55.6005 57.052 57.9386ZM78.9476 35.6593C78.9476 41.2904 74.2581 45.8976 68.5266 45.8976C62.795 45.8976 58.1055 41.2904 58.1055 35.6593C58.1055 30.0283 62.795 25.4211 68.5266 25.4211C74.2581 25.4211 78.9476 30.0283 78.9476 35.6593Z"
+                          fill="#252626"/>
+                </svg>
+                <p><b>111&thinsp;246</b> участников</p>
+            </div>
+            <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Fchallenge%2F2021%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=160"
+            " class="kv-slogan"><b>Книжный </b>вызов
+            <svg width="100" height="38" viewBox="0 0 100 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.00543 19.4419C8.00543 10.6918 3.25544 4.94189 3.25544 4.94189C3.25544 4.94189 2.857 4.94188 2.02106 4.94189C-0.666435 4.94194 -0.666435 0.941895 2.02106 0.941895H80.5055C90.7227 0.941895 99.0055 9.22463 99.0055 19.4419C99.0055 29.6592 90.7227 37.9419 80.5055 37.9419H2.01321C-0.666508 37.9419 -0.674286 33.9458 2.00932 33.9458C2.37261 33.9458 3.25544 33.9458 3.25544 33.9458C3.25544 33.9458 8.00543 27.9263 8.00543 19.4419Z"
+                      fill="#F8DB73"/>
+                <text x="14" y="31" class="kv-slogn__year">2021</text>
+            </svg>
+            </a>
+            <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Fforum%2Fpost%2F14009-knizhnyj-vyzov%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=160"
+            " class="main-slider__head">Правила вызова</a>
+            <h3 class="main-slider__title"><a
+                    href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Fchallenge%2F2021%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=160"
+                ">Участвуйте в ежегодной читательской гонке!</a></h3>
+            <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Fchallenge%2F2021%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=160"
+            " class="main-slider__link">Принять вызов</a>
+        </div>
+        <div class="main-slider__item slides-lenta" data-object_id="157">
+            <img class="main-slider__bg" src="https://s1.livelib.ru/boocover/1000416675/200x305/fcfb/boocover.jpg"
+                 width="100%" height="auto" alt="Анатолий Рыбаков - Кортик">
+            <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Freviews%2Ftop%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=157"
+            " class="main-slider__head">Лучшие <span>рецензии</span></a>
+            <img class="main-slider__img" src="https://s1.livelib.ru/boocover/1000416675/200x305/fcfb/boocover.jpg"
+                 width="100%" height="auto" alt="Анатолий Рыбаков - Кортик">
+            <h3 class="main-slider__title">
+                <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Freview%2F2238247-kortik-anatolij-rybakov%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=157"
+                ">
+                &quot;Мы шли под грохот канонады, мы пулям смотрели в лицо&quot;
+                </a>
+            </h3>
+            <a href="https://www.livelib.ru/go?url=https%3A%2F%2Fwww.livelib.ru%2Freview%2F2238247-kortik-anatolij-rybakov%3Futm_source%3Dlivelib%26utm_medium%3Dhome%26utm_campaign%3Dcarousel&utm_campaign=carousel&amp;utm_content=157"
+            " class="main-slider__link">Подробнее</a>
+        </div>
+    </div>
+</article>
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-								</ul>
-							</nav>
 
-					</header>
-				</div>
 
-			<!-- Banner -->
-				<div id="banner-wrapper">
-					<div id="banner" class="box container">
-						<div class="row">
+<!-- wtr - what to read -->
+    <article class="main-block main-wtr">
+        <h2 class="main-block__title"><a href="/books">Что почитать</a></h2>
+                    <a href="/books/movers-and-shakers" class="main-block__show-all">Всего 1K</a>
 
-						</div>
-					</div>
-				</div>
+    <div class="slide-book selection-slide-top__wrapper">
+        <div class="slide-book__limiter">
+            <ul class="slide-book__list" data-show="6" data-step="6" data-book_id="" data-year="" data-page="selection" data-object_id="" data-design="ll2019">
 
-			<!-- Features -->
+
+
+    <li class="slide-book__item" data-edition_id="1005964783" data-author_ids="1290387" data-genre_ids="1240,1251">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005964783">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005964783-mara-i-morok-500-let-nazad-liya-arden&list=movers-and-shakers&n=1&v=d&edition_id=1005964783&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005964783/200/4c91/boocover.jpg" width="100%" height="auto" alt="Лия Арден - Мара и Морок. 500 лет назад">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005964783-mara-i-morok-500-let-nazad-liya-arden&list=movers-and-shakers&n=1&v=d&edition_id=1005964783&type=gobook&reclist=portal_page&rvid=1136923279">Мара и Морок. 500 лет назад</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005964783, false, 410131);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1290387&list=movers-and-shakers&n=1&v=d&edition_id=1005964783&type=goauthor&reclist=portal_page&rvid=1136923279">Лия Арден</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,5</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005964783" data-rand_id="649446" id="btn-book-buy-1005964783-649446" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005964783,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=1&v=d&edition_id=1005964783&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005964783-649446" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="410131" data-show_extended="" data-show="" data-edition_id="1005964783" class="userbook-container   ub-edition-1005964783 ub-book-3893974 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="1" data-brec_alias="movers-and-shakers" id="xa-main-1005964783-0-410131">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005964783, 0, 0, 410131, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005964783" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005359737" data-author_ids="943339" data-genre_ids="430">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005359737">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005359737-sredi-tysyachi-slov-emma-skott&list=movers-and-shakers&n=2&v=d&edition_id=1005359737&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005359737/200/8d34/boocover.jpg" width="100%" height="auto" alt="Эмма Скотт - Среди тысячи слов">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005359737-sredi-tysyachi-slov-emma-skott&list=movers-and-shakers&n=2&v=d&edition_id=1005359737&type=gobook&reclist=portal_page&rvid=1136923279">Среди тысячи слов</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005359737, false, 589125);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F943339&list=movers-and-shakers&n=2&v=d&edition_id=1005359737&type=goauthor&reclist=portal_page&rvid=1136923279">Эмма Скотт</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,5</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005359737" data-rand_id="798257" id="btn-book-buy-1005359737-798257" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005359737,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=2&v=d&edition_id=1005359737&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005359737-798257" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="589125" data-show_extended="" data-show="" data-edition_id="1005359737" class="userbook-container   ub-edition-1005359737 ub-book-3693250 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="2" data-brec_alias="movers-and-shakers" id="xa-main-1005359737-0-589125">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005359737, 0, 0, 589125, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005359737" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005664612" data-author_ids="1170656" data-genre_ids="1314">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005664612">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005664612-koven-ozera-shamplejn-anastasiya-gor&list=movers-and-shakers&n=3&v=d&edition_id=1005664612&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005664612/200/8211/boocover.jpg" width="100%" height="auto" alt="Анастасия Гор - Ковен озера Шамплейн">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005664612-koven-ozera-shamplejn-anastasiya-gor&list=movers-and-shakers&n=3&v=d&edition_id=1005664612&type=gobook&reclist=portal_page&rvid=1136923279">Ковен озера Шамплейн</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005664612, false, 769658);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1170656&list=movers-and-shakers&n=3&v=d&edition_id=1005664612&type=goauthor&reclist=portal_page&rvid=1136923279">Анастасия Гор</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,5</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005664612" data-rand_id="514328" id="btn-book-buy-1005664612-514328" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005664612,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=3&v=d&edition_id=1005664612&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005664612-514328" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="769658" data-show_extended="" data-show="" data-edition_id="1005664612" class="userbook-container   ub-edition-1005664612 ub-book-3913870 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="3" data-brec_alias="movers-and-shakers" id="xa-main-1005664612-0-769658">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005664612, 0, 0, 769658, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005664612" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005605500" data-author_ids="1650061" data-genre_ids="529,433,149">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005605500">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005605500-knizhnye-hroniki-animant-kramb-lin-rina&list=movers-and-shakers&n=4&v=d&edition_id=1005605500&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005605500/200/fd0b/boocover.jpg" width="100%" height="auto" alt="Лин Рина - Книжные хроники Анимант Крамб">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005605500-knizhnye-hroniki-animant-kramb-lin-rina&list=movers-and-shakers&n=4&v=d&edition_id=1005605500&type=gobook&reclist=portal_page&rvid=1136923279">Книжные хроники Анимант Крамб</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005605500, false, 823146);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1650061&list=movers-and-shakers&n=4&v=d&edition_id=1005605500&type=goauthor&reclist=portal_page&rvid=1136923279">Лин Рина</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,3</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005605500" data-rand_id="939043" id="btn-book-buy-1005605500-939043" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005605500,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=4&v=d&edition_id=1005605500&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005605500-939043" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="823146" data-show_extended="" data-show="" data-edition_id="1005605500" class="userbook-container   ub-edition-1005605500 ub-book-3862957 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="4" data-brec_alias="movers-and-shakers" id="xa-main-1005605500-0-823146">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005605500, 0, 0, 823146, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005605500" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005531556" data-author_ids="648837" data-genre_ids="1306">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005531556">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005531556-aspid-kristina-stark&list=movers-and-shakers&n=5&v=d&edition_id=1005531556&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005531556/200/6723/boocover.jpg" width="100%" height="auto" alt="Кристина Старк - Аспид">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005531556-aspid-kristina-stark&list=movers-and-shakers&n=5&v=d&edition_id=1005531556&type=gobook&reclist=portal_page&rvid=1136923279">Аспид</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005531556, false, 231207);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F648837&list=movers-and-shakers&n=5&v=d&edition_id=1005531556&type=goauthor&reclist=portal_page&rvid=1136923279">Кристина Старк</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,2</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005531556" data-rand_id="148969" id="btn-book-buy-1005531556-148969" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005531556,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=5&v=d&edition_id=1005531556&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005531556-148969" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="231207" data-show_extended="" data-show="" data-edition_id="1005531556" class="userbook-container   ub-edition-1005531556 ub-book-3795157 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="5" data-brec_alias="movers-and-shakers" id="xa-main-1005531556-0-231207">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005531556, 0, 0, 231207, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005531556" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005910996" data-author_ids="6252" data-genre_ids="433">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005910996">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005910996-klara-i-solntse-kadzuo-isiguro&list=movers-and-shakers&n=6&v=d&edition_id=1005910996&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005910996/200/7f8a/boocover.jpg" width="100%" height="auto" alt="Кадзуо Исигуро - Клара и Солнце">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005910996-klara-i-solntse-kadzuo-isiguro&list=movers-and-shakers&n=6&v=d&edition_id=1005910996&type=gobook&reclist=portal_page&rvid=1136923279">Клара и Солнце</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005910996, false, 416588);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F6252&list=movers-and-shakers&n=6&v=d&edition_id=1005910996&type=goauthor&reclist=portal_page&rvid=1136923279">Кадзуо Исигуро</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,1</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005910996" data-rand_id="128885" id="btn-book-buy-1005910996-128885" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005910996,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=6&v=d&edition_id=1005910996&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005910996-128885" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="416588" data-show_extended="" data-show="" data-edition_id="1005910996" class="userbook-container   ub-edition-1005910996 ub-book-4127287 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="6" data-brec_alias="movers-and-shakers" id="xa-main-1005910996-0-416588">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005910996, 0, 0, 416588, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005910996" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005772501" data-author_ids="1078900" data-genre_ids="533">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005772501">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005772501-pod-nebom-parizha-dana-delon&list=movers-and-shakers&n=7&v=d&edition_id=1005772501&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005772501/200/3e53/boocover.jpg" width="100%" height="auto" alt="Дана Делон - Под небом Парижа">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005772501-pod-nebom-parizha-dana-delon&list=movers-and-shakers&n=7&v=d&edition_id=1005772501&type=gobook&reclist=portal_page&rvid=1136923279">Под небом Парижа</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005772501, false, 457291);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1078900&list=movers-and-shakers&n=7&v=d&edition_id=1005772501&type=goauthor&reclist=portal_page&rvid=1136923279">Дана Делон</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,3</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005772501" data-rand_id="394652" id="btn-book-buy-1005772501-394652" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005772501,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=7&v=d&edition_id=1005772501&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005772501-394652" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="457291" data-show_extended="" data-show="" data-edition_id="1005772501" class="userbook-container   ub-edition-1005772501 ub-book-4005610 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="7" data-brec_alias="movers-and-shakers" id="xa-main-1005772501-0-457291">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005772501, 0, 0, 457291, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005772501" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005525517" data-author_ids="645418" data-genre_ids="533">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005525517">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005525517-ohota-na-botanika-yanina-logvin&list=movers-and-shakers&n=8&v=d&edition_id=1005525517&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005525517/200/a111/boocover.jpg" width="100%" height="auto" alt="Янина Логвин - Охота на Ботаника">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005525517-ohota-na-botanika-yanina-logvin&list=movers-and-shakers&n=8&v=d&edition_id=1005525517&type=gobook&reclist=portal_page&rvid=1136923279">Охота на Ботаника</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005525517, false, 353944);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F645418&list=movers-and-shakers&n=8&v=d&edition_id=1005525517&type=goauthor&reclist=portal_page&rvid=1136923279">Янина Логвин</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,2</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005525517" data-rand_id="861011" id="btn-book-buy-1005525517-861011" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005525517,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=8&v=d&edition_id=1005525517&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005525517-861011" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="353944" data-show_extended="" data-show="" data-edition_id="1005525517" class="userbook-container   ub-edition-1005525517 ub-book-2486568 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="8" data-brec_alias="movers-and-shakers" id="xa-main-1005525517-0-353944">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005525517, 0, 0, 353944, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005525517" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005653950" data-author_ids="425611" data-genre_ids="426,149">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005653950">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005653950-sestra-zvjozd-mara-vulf&list=movers-and-shakers&n=9&v=d&edition_id=1005653950&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005653950/200/6e52/boocover.jpg" width="100%" height="auto" alt="Мара Вульф - Сестра звёзд">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005653950-sestra-zvjozd-mara-vulf&list=movers-and-shakers&n=9&v=d&edition_id=1005653950&type=gobook&reclist=portal_page&rvid=1136923279">Сестра звёзд</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005653950, false, 224340);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F425611&list=movers-and-shakers&n=9&v=d&edition_id=1005653950&type=goauthor&reclist=portal_page&rvid=1136923279">Мара Вульф</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,2</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005653950" data-rand_id="716386" id="btn-book-buy-1005653950-716386" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005653950,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=9&v=d&edition_id=1005653950&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005653950-716386" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="224340" data-show_extended="" data-show="" data-edition_id="1005653950" class="userbook-container   ub-edition-1005653950 ub-book-3905086 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="9" data-brec_alias="movers-and-shakers" id="xa-main-1005653950-0-224340">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005653950, 0, 0, 224340, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005653950" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005626245" data-author_ids="28724" data-genre_ids="1222,1326">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005626245">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005626245-teni-tevtonov-aleksej-ivanov&list=movers-and-shakers&n=10&v=d&edition_id=1005626245&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005626245/200/7120/boocover.jpg" width="100%" height="auto" alt="Алексей Иванов - Тени тевтонов">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005626245-teni-tevtonov-aleksej-ivanov&list=movers-and-shakers&n=10&v=d&edition_id=1005626245&type=gobook&reclist=portal_page&rvid=1136923279">Тени тевтонов</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005626245, false, 573155);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F28724&list=movers-and-shakers&n=10&v=d&edition_id=1005626245&type=goauthor&reclist=portal_page&rvid=1136923279">Алексей Иванов</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,0</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005626245" data-rand_id="518098" id="btn-book-buy-1005626245-518098" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005626245,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=10&v=d&edition_id=1005626245&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005626245-518098" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="573155" data-show_extended="" data-show="" data-edition_id="1005626245" class="userbook-container   ub-edition-1005626245 ub-book-3881791 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="10" data-brec_alias="movers-and-shakers" id="xa-main-1005626245-0-573155">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005626245, 0, 0, 573155, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005626245" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1006150843" data-author_ids="1045285" data-genre_ids="533,1306">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1006150843">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1006150843-v-poiskah-sokrovischa-asya-lavrinovich&list=movers-and-shakers&n=11&v=d&edition_id=1006150843&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1006150843/200/4bf3/boocover.jpg" width="100%" height="auto" alt="Ася Лавринович - В поисках сокровища">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1006150843-v-poiskah-sokrovischa-asya-lavrinovich&list=movers-and-shakers&n=11&v=d&edition_id=1006150843&type=gobook&reclist=portal_page&rvid=1136923279">В поисках сокровища</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1006150843, false, 219747);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1045285&list=movers-and-shakers&n=11&v=d&edition_id=1006150843&type=goauthor&reclist=portal_page&rvid=1136923279">Ася Лавринович</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,4</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1006150843" data-rand_id="614116" id="btn-book-buy-1006150843-614116" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1006150843,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=11&v=d&edition_id=1006150843&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1006150843-614116" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="219747" data-show_extended="" data-show="" data-edition_id="1006150843" class="userbook-container   ub-edition-1006150843 ub-book-3911215 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="11" data-brec_alias="movers-and-shakers" id="xa-main-1006150843-0-219747">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1006150843, 0, 0, 219747, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1006150843" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005584053" data-author_ids="838347" data-genre_ids="1251,1222,1249">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005584053">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005584053-zlaya-zima-olga-yaroshinskaya&list=movers-and-shakers&n=12&v=d&edition_id=1005584053&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005584053/200/a723/boocover.jpg" width="100%" height="auto" alt="Ольга Ярошинская - Злая зима">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005584053-zlaya-zima-olga-yaroshinskaya&list=movers-and-shakers&n=12&v=d&edition_id=1005584053&type=gobook&reclist=portal_page&rvid=1136923279">Злая зима</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005584053, false, 759351);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F838347&list=movers-and-shakers&n=12&v=d&edition_id=1005584053&type=goauthor&reclist=portal_page&rvid=1136923279">Ольга Ярошинская</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,2</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005584053" data-rand_id="372860" id="btn-book-buy-1005584053-372860" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005584053,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=12&v=d&edition_id=1005584053&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005584053-372860" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="759351" data-show_extended="" data-show="" data-edition_id="1005584053" class="userbook-container   ub-edition-1005584053 ub-book-2270598 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="12" data-brec_alias="movers-and-shakers" id="xa-main-1005584053-0-759351">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005584053, 0, 0, 759351, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005584053" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005633952" data-author_ids="405111" data-genre_ids="1142,444">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005633952">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005633952-zavisimost-tove-ditlevsen&list=movers-and-shakers&n=13&v=d&edition_id=1005633952&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005633952/200/a598/boocover.jpg" width="100%" height="auto" alt="Тове Дитлевсен - Зависимость">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005633952-zavisimost-tove-ditlevsen&list=movers-and-shakers&n=13&v=d&edition_id=1005633952&type=gobook&reclist=portal_page&rvid=1136923279">Зависимость</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005633952, false, 1412);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F405111&list=movers-and-shakers&n=13&v=d&edition_id=1005633952&type=goauthor&reclist=portal_page&rvid=1136923279">Тове Дитлевсен</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,4</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005633952" data-rand_id="734225" id="btn-book-buy-1005633952-734225" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005633952,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=13&v=d&edition_id=1005633952&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005633952-734225" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="1412" data-show_extended="" data-show="" data-edition_id="1005633952" class="userbook-container   ub-edition-1005633952 ub-book-3888385 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="13" data-brec_alias="movers-and-shakers" id="xa-main-1005633952-0-1412">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005633952, 0, 0, 1412, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005633952" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005746602" data-author_ids="1664890" data-genre_ids="1217,127">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005746602">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005746602-pisma-smerti-chzhou-haohuej&list=movers-and-shakers&n=14&v=d&edition_id=1005746602&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005746602/200/31f4/boocover.jpg" width="100%" height="auto" alt="Чжоу Хаохуэй - Письма смерти">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005746602-pisma-smerti-chzhou-haohuej&list=movers-and-shakers&n=14&v=d&edition_id=1005746602&type=gobook&reclist=portal_page&rvid=1136923279">Письма смерти</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005746602, false, 350315);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1664890&list=movers-and-shakers&n=14&v=d&edition_id=1005746602&type=goauthor&reclist=portal_page&rvid=1136923279">Чжоу Хаохуэй</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>3,9</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005746602" data-rand_id="285893" id="btn-book-buy-1005746602-285893" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005746602,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=14&v=d&edition_id=1005746602&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005746602-285893" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="350315" data-show_extended="" data-show="" data-edition_id="1005746602" class="userbook-container   ub-edition-1005746602 ub-book-3916879 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="14" data-brec_alias="movers-and-shakers" id="xa-main-1005746602-0-350315">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005746602, 0, 0, 350315, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005746602" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005642079" data-author_ids="229688" data-genre_ids="1121">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005642079">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005642079-naruto-naruto-kniga-1-naruto-udzumaki-masasi-kisimoto&list=movers-and-shakers&n=15&v=d&edition_id=1005642079&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005642079/200/26ba/boocover.jpg" width="100%" height="auto" alt="Масаси Кисимото - Naruto. Наруто. Книга 1. Наруто Удзумаки">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005642079-naruto-naruto-kniga-1-naruto-udzumaki-masasi-kisimoto&list=movers-and-shakers&n=15&v=d&edition_id=1005642079&type=gobook&reclist=portal_page&rvid=1136923279">Naruto. Наруто. Книга 1. Наруто Удзумаки</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005642079, false, 248098);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F229688&list=movers-and-shakers&n=15&v=d&edition_id=1005642079&type=goauthor&reclist=portal_page&rvid=1136923279">Масаси Кисимото</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,8</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005642079" data-rand_id="800302" id="btn-book-buy-1005642079-800302" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005642079,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=15&v=d&edition_id=1005642079&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005642079-800302" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="248098" data-show_extended="" data-show="" data-edition_id="1005642079" class="userbook-container   ub-edition-1005642079 ub-book-3895942 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="15" data-brec_alias="movers-and-shakers" id="xa-main-1005642079-0-248098">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005642079, 0, 0, 248098, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005642079" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005765307" data-author_ids="475818" data-genre_ids="1249">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005765307" style="display: none">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005765307-shkola-temnyh-vypusknitsa-buri-olga-pashnina&list=movers-and-shakers&n=16&v=d&edition_id=1005765307&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005765307/200/8947/boocover.jpg" width="100%" height="auto" alt="Ольга Пашнина - Школа темных. Выпускница бури">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005765307-shkola-temnyh-vypusknitsa-buri-olga-pashnina&list=movers-and-shakers&n=16&v=d&edition_id=1005765307&type=gobook&reclist=portal_page&rvid=1136923279">Школа темных. Выпускница бури</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005765307, false, 148336);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F475818&list=movers-and-shakers&n=16&v=d&edition_id=1005765307&type=goauthor&reclist=portal_page&rvid=1136923279">Ольга Пашнина</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,4</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005765307" data-rand_id="658229" id="btn-book-buy-1005765307-658229" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005765307,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=16&v=d&edition_id=1005765307&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005765307-658229" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="148336" data-show_extended="" data-show="" data-edition_id="1005765307" class="userbook-container   ub-edition-1005765307 ub-book-3144454 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="16" data-brec_alias="movers-and-shakers" id="xa-main-1005765307-0-148336">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005765307, 0, 0, 148336, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005765307" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1006083625" data-author_ids="1076203" data-genre_ids="533">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1006083625">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1006083625-peredruzhba-nedootnosheniya-aleks-hill&list=movers-and-shakers&n=17&v=d&edition_id=1006083625&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1006083625/200/8d12/boocover.jpg" width="100%" height="auto" alt="Алекс Хилл - Передружба. Недоотношения">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1006083625-peredruzhba-nedootnosheniya-aleks-hill&list=movers-and-shakers&n=17&v=d&edition_id=1006083625&type=gobook&reclist=portal_page&rvid=1136923279">Передружба. Недоотношения</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1006083625, false, 449749);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F1076203&list=movers-and-shakers&n=17&v=d&edition_id=1006083625&type=goauthor&reclist=portal_page&rvid=1136923279">Алекс Хилл</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                <span>4,4</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1006083625" data-rand_id="737461" id="btn-book-buy-1006083625-737461" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1006083625,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=17&v=d&edition_id=1006083625&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1006083625-737461" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="449749" data-show_extended="" data-show="" data-edition_id="1006083625" class="userbook-container   ub-edition-1006083625 ub-book-2596624 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="17" data-brec_alias="movers-and-shakers" id="xa-main-1006083625-0-449749">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1006083625, 0, 0, 449749, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1006083625" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+
+    <li class="slide-book__item" data-edition_id="1005661954" data-author_ids="27405" data-genre_ids="424">
+                            <span class="bc-menu__status-wrapper" id="ub-bookmark-status-1005661954">
+
+                </span>                <a class="slide-book__link" href="/proceed?url=%2Fbook%2F1005661954-obschestvo-gurmanov-dzhejms-blejlok&list=movers-and-shakers&n=18&v=d&edition_id=1005661954&type=gobook&reclist=portal_page&rvid=1136923279">
+            <img data-pagespeed-no-defer src="https://s1.livelib.ru/boocover/1005661954/200/ab18/boocover.jpg" width="100%" height="auto" alt="Джеймс Блэйлок - Общество гурманов">
+                    </a>
+        <div class="slide-book__wrapper">
+            <a class="slide-book__title" href="/proceed?url=%2Fbook%2F1005661954-obschestvo-gurmanov-dzhejms-blejlok&list=movers-and-shakers&n=18&v=d&edition_id=1005661954&type=gobook&reclist=portal_page&rvid=1136923279">Общество гурманов</a>
+                            <div class="slide-book__menu">
+                    <div class="slide-book__menu-block">
+                        <a href="javascript:void(0);" onclick="ub_share(1005661954, false, 456486);">Поделиться</a>
+                    </div>
+                </div>
+                                                                                                            <a class="slide-book__author" href="/proceed?url=%2Fauthor%2F27405&list=movers-and-shakers&n=18&v=d&edition_id=1005661954&type=goauthor&reclist=portal_page&rvid=1136923279">Джеймс Блэйлок</a>
+                                                                            <div class="slide-book__rating">
+
+                                                                                            <span>0,0</span>
+                </div>
+
+
+
+                        <div class="separator"></div>                    <div class="btn-buy-holder ">
+                                  <a data-edition_id="1005661954" data-rand_id="219407" id="btn-book-buy-1005661954-219407" class="slide-book__buy   btn-buy-v2-list" href="javascript:void(0);" onclick="
+                                    bookprice_show(1005661954,'paper');
+                                    pixel('/proceed?list=movers-and-shakers&n=18&v=d&edition_id=1005661954&type=wantstobuy&rand=' + (Math.random()*10000));                ">Купить</a>
+            <div class="btn-buy-container" id="book-buy-1005661954-219407" style="display:none;"></div>
+                    </div>
+
+
+
+
+            <div data-view_mode="button" data-userbook_id="0" data-strict_edition_id="0" data-rand_id="456486" data-show_extended="" data-show="" data-edition_id="1005661954" class="userbook-container   ub-edition-1005661954 ub-book-3911707 btn-add-plus__wrapper ub-container" data-design="ll2019" data-brec_no="18" data-brec_alias="movers-and-shakers" id="xa-main-1005661954-0-456486">
+
+                <a href="javascript:void(0);" onclick="ub_form2020(1005661954, 0, 0, 456486, event);" class="btn-add-plus"><i></i></a>
+                <input type="hidden" id="ub-viewmode-1005661954" value="btn-add-plus">
+
+    </div>
+
+        </div>
+
+
+
+
+            </li>
+                </ul>
+        </div>
+    </div>
+
+    </article>
+
+	<!-- Features -->
 				<div id="features-wrapper">
 					<div class="container">
 						<div class="row">
@@ -111,7 +953,7 @@
 						</div>
 					</div>
 				</div>
-			<!-- Main -->
+<!-- Main -->
 				<div id="main-wrapper">
 					<div class="container">
 						<div class="row gtr-200">
@@ -152,96 +994,25 @@
 					</div>
 				</div>
 
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<div class="col-3 col-6-medium col-12-small">
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
+<script src="https://s.livelib.ru/js/main/jquery-3.4.1.min.20210819.js" type="text/javascript"></script>
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
+<script id="slick-script" src="https://s.livelib.ru/js/main/slick-min.20210819.js" type="text/javascript"></script>
+<script id="slick-init" src="https://s.livelib.ru/js/prod/7e7eb289eb4a37e5212dc7ca4539932d.20210819.js"
+        type="text/javascript"></script>
 
-								<!-- Links -->
-									<section class="widget links">
-										<h3>Random Stuff</h3>
-										<ul class="style2">
-											<li><a href="#">Etiam feugiat condimentum</a></li>
-											<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-											<li><a href="#">Sed porttitor cras in erat nec</a></li>
-											<li><a href="#">Felis varius pellentesque potenti</a></li>
-											<li><a href="#">Nullam scelerisque blandit leo</a></li>
-										</ul>
-									</section>
+{% endblock %}
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
 
-								<!-- Contact -->
-									<section class="widget contact last">
-										<h3>Contact Us</h3>
-										<ul>
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-										</ul>
-										<p>1234 Fictional Road<br />
-										Nashville, TN 00000<br />
-										(800) 555-0000</p>
-									</section>
 
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
 
-			</div>
 
-		<!-- Scripts -->
 
-			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-			<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
-			<script src="{% static 'assets/js/browser.min.js' %}"></script>
-			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
-			<script src="{% static 'assets/js/util.js' %}"></script>
-			<script src="{% static 'assets/js/main.js' %}"></script>
 
-	</body>
-</html>
+
+
+
+
+

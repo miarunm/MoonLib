@@ -4,3 +4,4 @@ python-decouple
 Pillow==8.1
 django-ckeditor
 django-filter
+django-bootstrap-form
