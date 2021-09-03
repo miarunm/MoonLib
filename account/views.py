@@ -11,15 +11,13 @@ class RegisterView(CreateView):
     template_name = 'registration.html'
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
-    success_message = 'success registered'
+    success_message = 'Вы успешно зарегистрировались!'
 
 
 class SignInView(LoginView):
     template_name = 'login.html'
-    success_url = reverse_lazy('index-page')
+    success_url = reverse_lazy('index')
 
 
-class ProfileView(DetailView):
-    model = User
-    template_name = 'profile.html'
-    context_object_name = 'user'
+def profile(request):
+    return render(request, 'profile.html')

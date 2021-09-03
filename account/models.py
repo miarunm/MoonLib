@@ -32,3 +32,4 @@ class User(AbstractUser):
         self.activation_code = code
         self.save()
 
+

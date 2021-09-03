@@ -99,30 +99,40 @@
                     </li>
                     <li><a href="no-sidebar.html">No Sidebar</a></li>
                     <li>
-                        <a href="#">Dropdown</a>
+                        <a href="#"><i class="far fa-user"></i></i></a>
                         <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li>
-                                <a href="#">Phasellus consequat</a>
+                            {% if not request.user.is_authenticated %}
+                            <li><a href="{% url 'register' %}">Зарегистрироваться</a></li>
+                            <li><a href="{% url 'login' %}">Войти</a></li>
+                            {% else %}
+                            <li><a href="{% url 'profile' %}">{{ request.user.username }}</a><img src="#"></li>
+                            <li><a>Мои книги</a>
                                 <ul>
-                                    <li><a href="#">Lorem ipsum dolor</a></li>
-                                    <li><a href="#">Phasellus consequat</a></li>
-                                    <li><a href="#">Magna phasellus</a></li>
-                                    <li><a href="#">Etiam dolore nisl</a></li>
+                                    <li><a>Хочу прочитать</a></li>
+                                    <li><a>Читаю сейчас</a></li>
+                                    <li><a>Не дочитал</a></li>
+                                    <li><a>Прочитал</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Veroeros feugiat</a></li>
+                            <li><a>Мои друзья</a></li>
+                            <li><a>Избранное</a>
+                                <ul>
+                                    <li><a>Книги</a></li>
+                                    <li><a>Авторы</a></li>
+                                    <li><a>Рецензии</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'logout' %}">Выйти</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul>
-
-                <div class="search-container">
-                    <input type="text" name="search" placeholder="Найти..." class="search-input">
-                    <a href="#" class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </a>
-                </div>
+                <form method="get">
+                    <div class="search-container">
+                        <input type="text" name="q" placeholder="Найти..." class="search-input">
+                            <i class="fas fa-search"></i>
+                    </div>
+                </form>
             </nav>
 
         </header>

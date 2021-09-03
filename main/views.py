@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -18,6 +19,23 @@ class MainPageViews(ListView):
     model = Book
     template_name = 'index.html'
     context_object_name = 'books'
+
+    def get_template_names(self):
+        template_name = super(MainPageViews, self).get_template_names()
+        search = self.request.GET.get('q')
+        if search:
+            template_name = 'search.html'
+        return template_name
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search = self.request.GET.get('q')
+        if search:
+            context['books'] = Book.objects.filter(Q(title__icontains=search)|
+                                                   Q(desc__icontains=search))
+        else:
+            context['books'] = Book.objects.all()
+        return context
 
 
 class CategoryDetailView(DetailView):
@@ -93,13 +111,6 @@ def update_book(request, pk):
 
     return render(request, 'update-book.html', locals())
 
-# def delete_book(request, pk):
-#     book = get_object_or_404(Book, pk=pk)
-#     if request.method == 'POST':
-#         book.delete()
-#         messages.add_message(request, messages.SUCCESS, 'Успешно удален!')
-#         return redirect('index')
-#     return render(request, 'delete-book.html')
 
 class DeleteBookView(DeleteView):
     model = Book
@@ -114,3 +125,19 @@ class DeleteBookView(DeleteView):
         messages.add_message(request, messages.SUCCESS, 'Успешно удалено!')
         return HttpResponseRedirect(success_url)
 
+
+class AuthorView(DetailView):
+    model = Author
+    template_name = 'author.html'
+    context_object_name = 'author'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.slug = kwargs.get('slug', None)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Book.objects.filter(author=self.slug)
+
+        return context

@@ -14,13 +14,13 @@ class RegistrationForm(forms.ModelForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError('User with given username already exists.')
+            raise forms.ValidationError('Пользователь с таким username уже существует.')
         return username
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('User with given email already exists.')
+            raise forms.ValidationError('Пользователь с таким email уже существует.')
         return email
 
     def clean(self):
@@ -28,7 +28,7 @@ class RegistrationForm(forms.ModelForm):
         password = data.get('password')
         password_confirm = data.pop('password_confirmation')
         if password != password_confirm:
-            raise forms.ValidationError('Password do not match')
+            raise forms.ValidationError('Пароли не совпадают')
         return data
 
     def save(self, commit=True):

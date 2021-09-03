@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Main -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row gtr-200">
+            <div class="col-4 col-12-medium">
+                <div id="sidebar">
+
+                    <!-- Sidebar -->
+                    <section>
+                        <img src="{{ author.image.url }}" class="img-thumbnail" style="height: 350px; width: 300px; border-radius: 50%;" >
+                    </section>
+                    <div>
+                        <h4>Ссылки:</h4>
+                        <p>{{ author.links }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 col-12-medium imp-medium">
+                <div id="content">
+
+                    <!-- Content -->
+
+                    <article>
+                        <a style="margin-left: 700px"><i class="far fa-bookmark fa-2x"></i></a>
+                        <h1>{{ author }}</h1>
+                        <h5 style="margin-left: 5px"><a>{{ book.author }}</a></h5>
+                        <br>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck1">Книги <span class="badge bg-secondary">{{ books.count }}</span></label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck2">Рецензии <span class="badge bg-secondary">{{ books.count }}</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck3">Цитаты</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btncheck4">Читатели</label>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h3>Биография</h3>
+                        <p>{{ author.biography }}</p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
